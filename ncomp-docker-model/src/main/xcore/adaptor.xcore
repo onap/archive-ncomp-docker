@@ -1,0 +1,577 @@
+
+/*-
+ * ============LICENSE_START==========================================
+ * OPENECOMP - DCAE
+ * ===================================================================
+ * Copyright (c) 2017 AT&T Intellectual Property. All rights reserved.
+ * ===================================================================
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ============LICENSE_END============================================
+ */
+	
+@GenModel(modelDirectory="/ncomp-docker-model/src/main/xcore-gen")
+
+
+package org.openecomp.ncomp.docker 
+
+import org.openecomp.ncomp.core.NamedEntity
+
+class DockerAdaptor {    
+	contains DockerHost[] dockerHosts 
+}
+
+class DockerHost extends NamedEntity {
+	String url
+	long pollingFrequency = "30000"
+	boolean remote = "false"
+	contains DockerImage[] images
+	contains DockerContainer[] containers
+	contains DockerNetwork[] networks
+	op void poll()
+	op void startContainer(String name)
+	op void stopContainer(String name, int seconds)
+	op void restartContainer(String name, int seconds)
+	op void pauseContainer(String name)
+	op void unpauseContainer(String name)
+	op void removeContainer(String name,boolean remove,boolean force)
+	op void inspectContainer(String name)
+	op void killContainer(String name,String sigint)
+	op void dockerRun(String image)
+	op void dockerRunWithName(String image, String name)
+	op void dockerRunWithOptions(String image, ContainerOptions opts)
+	op void containerStats(String name, boolean stream)
+	op void containerProcesses(String name)
+}
+
+class DockerImage extends NamedEntity {
+    String ^id 				// "Id": "89d5d8e8bafb6e279fa70ea444260fa61cc7c5c7d93eff51002005c54a49c918",
+    String parentId 		// "ParentId": "e24428725dd6f8e354a0c6080570f90d40e9e963c6878144291c6ba9fd39b25f",
+    String[] repoTags 		//"RepoTags": ["ubuntu:latest"],
+    String[] repoDigests 	//"RepoDigests": [],
+    Date dockerCreated 		//"Created": 1449599913,
+    Long size 				//"Size": 0,
+    Long virtualSize 		//"VirtualSize": 187920354,
+    String[] labels 		//"Labels": null
+}
+
+class DockerContainer extends NamedEntity {
+	  String ^id 				// "Id": "d2dc0b5f101cff3f0d015ab92266d8672f57668449710e5d05500baf8b53404e",
+	  String[] names			// "Names": ["/angry_bardeen"],
+	  String image 				// "Image": "ubuntu",
+	  String imageID 			// "ImageID": "89d5d8e8bafb6e279fa70ea444260fa61cc7c5c7d93eff51002005c54a49c918",
+	  String command 			// "Command": "/bin/bash",
+	  String dockerCreated 		// "Created": 1451671108,
+	  contains DockerPort[] ports 
+	  contains DockerKeyPair[] labels 			// "Labels": {},
+	  String status 			// "Status": "Up 3 hours",
+	  contains DockerKeyPair[] hostConfig 		// "HostConfig": {"NetworkMode": "default"}
+	  contains DockerProcess[] processes // container processes
+	  contains DockerMount[] mounts 
+	  contains DockerContainerStats stats // container statistic snapshots
+	  contains DockerEvents[] events // docker events since the last poll
+}
+
+class DockerPort {
+	int privatePort				// "PrivatePort": 2222
+	int publicPort				// "PublicPort": 3333
+	String ^type				// "Type": "tcp"
+}
+
+class DockerKeyPair {
+	String name
+	String value
+}
+
+class DockerMount {
+	String source
+    String destination
+    String mode
+    Boolean rW
+    String propagation
+	
+}
+
+//
+// Docker run command takes numerous runtime arguments. At present we only support
+//    -v, --volume    bind mount a volume 
+//    --name          assign a name to the container
+//    -P              map any exposed port to an ephmeral port 
+//    -p cPort[/protocol]:vPort  container port:vm port if no proto, defaults to tcp
+//
+class ContainerOptions extends NamedEntity {
+	String imageNm
+	// list of key=value pairs such as MYSQL_USER=nmsadm to pass as runtime environment 
+	// arguments for the container
+	String[] env
+	// bind volume syntax "vm_folder:countainer_folder" such as "/var/log:/opt/app/manager/logs" which 
+	// means -- mount the VM /var/log directory as /opt/app/manager/logs in the container
+	String[] volumes
+	// Link to another container. link is containerName:containerAlias
+	String[] links
+	boolean setContainerName
+	// map an exposed container port to an ephemeral VM port
+	boolean publishAllPorts
+	// expected format is container_port/protocol:host_port
+	contains ContainerPortBindings[] portBindings
+	contains ContainerRestartPolicy autoRestart
+}
+
+//
+// valid policies 
+// no - do not auto restart the container, this is the default docker behavior
+// on-failure - restart only if the container exits with a non-zero status
+// always - always restart. daemon will always try, indefinitely
+// unless-stop - always restart, unless the container has been put into a stopped start
+//
+// maxRetryCnt applies to on-failure policy
+//
+class ContainerRestartPolicy {
+	String nm
+	int maxRetryCnt
+}
+
+class ContainerPortBindings extends NamedEntity {
+	int containerPort
+	String protocol
+	int vmPort
+}
+
+//  {
+//    "Name": "bridge",
+//    "Id": "f2de39df4171b0dc801e8002d1d999b77256983dfc63041c0f34030aa3977566",
+//    "Scope": "local",
+//    "Driver": "bridge",
+//    "IPAM": {
+//      "Driver": "default",
+//      "Config": [
+//        {
+//          "Subnet": "172.17.0.0/16"
+//        }
+//      ]
+//    },
+//    "Containers": {
+//      "39b69226f9d79f5634485fb236a23b2fe4e96a0a94128390a7fbbcc167065867": {
+//        "EndpointID": "ed2419a97c1d9954d05b46e462e7002ea552f216e9b136b80a7db8d98b442eda",
+//        "MacAddress": "02:42:ac:11:00:02",
+//        "IPv4Address": "172.17.0.2/16",
+//        "IPv6Address": ""
+//      }
+//    },
+//    "Options": {
+//      "com.docker.network.bridge.default_bridge": "true",
+//      "com.docker.network.bridge.enable_icc": "true",
+//      "com.docker.network.bridge.enable_ip_masquerade": "true",
+//      "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+//      "com.docker.network.bridge.name": "docker0",
+//      "com.docker.network.driver.mtu": "1500"
+//    }
+//  },
+
+class DockerNetwork extends NamedEntity {
+	String ^id
+	String scope
+	String driver 
+	contains DockerIpam iPAM
+	contains DockerNetworkContainer[] containers
+	contains DockerKeyPair[] options
+}
+
+class DockerIpam {
+	String driver
+	contains DockerIpamConfig[] config
+}
+
+class DockerIpamConfig {
+	String subnet
+}
+
+class DockerNetworkContainer {
+	String ^id
+	String iPv4Address
+	String iPv6Address
+	String endpointID 
+	String macAddress
+}
+
+class DockerEvents extends NamedEntity {
+	String status
+	String ^id
+	String ^type
+	String action 
+	contains DockerActor actor
+	int time
+	long timenano
+}
+
+class DockerActor {
+	String ^id
+	contains DockerActorAttributes attributes 
+}
+
+class DockerActorAttributes {
+	String name
+}
+
+//{
+//       "Hostname": "",
+//       "Domainname": "",
+//       "User": "",
+//       "AttachStdin": false,
+//       "AttachStdout": true,
+//       "AttachStderr": true,
+//       "Tty": false,
+//       "OpenStdin": false,
+//       "StdinOnce": false,
+//       "Env": [
+//               "FOO=bar",
+//               "BAZ=quux"
+//       ],
+//       "Cmd": [
+//               "date"
+//       ],
+//       "Entrypoint": "",
+//       "Image": "ubuntu",
+//       "Labels": {
+//               "com.example.vendor": "Acme",
+//               "com.example.license": "GPL",
+//               "com.example.version": "1.0"
+//       },
+//       "Mounts": [
+//         {
+//           "Source": "/data",
+//           "Destination": "/data",
+//           "Mode": "ro,Z",
+//           "RW": false
+//         }
+//       ],
+//       "WorkingDir": "",
+//       "NetworkDisabled": false,
+//       "MacAddress": "12:34:56:78:9a:bc",
+//       "ExposedPorts": {
+//               "22/tcp": {}
+//       },
+//       "StopSignal": "SIGTERM",
+//       "HostConfig": {
+//         "Binds": ["/tmp:/tmp"],
+//         "Links": ["redis3:redis"],
+//         "LxcConf": {"lxc.utsname":"docker"},
+//         "Memory": 0,
+//         "MemorySwap": 0,
+//         "MemoryReservation": 0,
+//         "KernelMemory": 0,
+//         "CpuShares": 512,
+//         "CpuPeriod": 100000,
+//         "CpuQuota": 50000,
+//         "CpusetCpus": "0,1",
+//         "CpusetMems": "0,1",
+//         "BlkioWeight": 300,
+//         "MemorySwappiness": 60,
+//         "OomKillDisable": false,
+//         "PortBindings": { "22/tcp": [{ "HostPort": "11022" }] },
+//         "PublishAllPorts": false,
+//         "Privileged": false,
+//         "ReadonlyRootfs": false,
+//         "Dns": ["8.8.8.8"],
+//         "DnsOptions": [""],
+//         "DnsSearch": [""],
+//         "ExtraHosts": null,
+//         "VolumesFrom": ["parent", "other:ro"],
+//         "CapAdd": ["NET_ADMIN"],
+//         "CapDrop": ["MKNOD"],
+//         "RestartPolicy": { "Name": "", "MaximumRetryCount": 0 },
+//         "NetworkMode": "bridge",
+//         "Devices": [],
+//         "Ulimits": [{}],
+//         "LogConfig": { "Type": "json-file", "Config": {} },
+//         "SecurityOpt": [""],
+//         "CgroupParent": "",
+//         "VolumeDriver": ""
+//      }
+//  }
+
+class DockerCreateRequest {
+	String hostname
+	String[] cmd
+}
+
+/*
+ * docker container process table json
+ * 
+{
+  "Titles" : [
+    "USER","PID","%CPU","%MEM","VSZ","RSS","TTY","STAT","START","TIME","COMMAND"
+  ]
+  "Processes" : [
+    [
+      "root","13642","0.0","0.1","18172","3184","pts/0","Ss","17:03","0:00","/bin/bash"
+    ],
+    [
+      "root","13895","0.0","0.0","4348","692","pts/0","S+","17:15","0:00","sleep 10"
+    ]
+ ],
+}
+*/
+
+class DockerProcess extends NamedEntity {
+	String user
+	long pid
+	double cpu
+	double mem
+	long vsz
+	long rss
+	String tty
+	String stat
+	Date start
+	long timeElapsed
+	String command
+}
+
+
+/*
+ * Container stats - JSON
+ *
+	{
+     "read" : "2015-01-08T22:57:31.547920715Z",
+     "networks": {
+             "eth0": {
+                 "rx_bytes": 5338,
+                 "rx_dropped": 0,
+                 "rx_errors": 0,
+                 "rx_packets": 36,
+                 "tx_bytes": 648,
+                 "tx_dropped": 0,
+                 "tx_errors": 0,
+                 "tx_packets": 8
+             },
+             "eth5": {
+                 "rx_bytes": 4641,
+                 "rx_dropped": 0,
+                 "rx_errors": 0,
+                 "rx_packets": 26,
+                 "tx_bytes": 690,
+                 "tx_dropped": 0,
+                 "tx_errors": 0,
+                 "tx_packets": 9
+             }
+     },
+     "memory_stats" : {
+        "stats" : {
+           "total_pgmajfault" : 0,
+           "cache" : 0,
+           "mapped_file" : 0,
+           "total_inactive_file" : 0,
+           "pgpgout" : 414,
+           "rss" : 6537216,
+           "total_mapped_file" : 0,
+           "writeback" : 0,
+           "unevictable" : 0,
+           "pgpgin" : 477,
+           "total_unevictable" : 0,
+           "pgmajfault" : 0,
+           "total_rss" : 6537216,
+           "total_rss_huge" : 6291456,
+           "total_writeback" : 0,
+           "total_inactive_anon" : 0,
+           "rss_huge" : 6291456,
+           "hierarchical_memory_limit" : 67108864,
+           "total_pgfault" : 964,
+           "total_active_file" : 0,
+           "active_anon" : 6537216,
+           "total_active_anon" : 6537216,
+           "total_pgpgout" : 414,
+           "total_cache" : 0,
+           "inactive_anon" : 0,
+           "active_file" : 0,
+           "pgfault" : 964,
+           "inactive_file" : 0,
+           "total_pgpgin" : 477
+        },
+        "max_usage" : 6651904,
+        "usage" : 6537216,
+        "failcnt" : 0,
+        "limit" : 67108864
+     },
+     "blkio_stats" : {},
+     "cpu_stats" : {
+        "cpu_usage" : {
+           "percpu_usage" : [
+              16970827,
+              1839451,
+              7107380,
+              10571290
+           ],
+           "usage_in_usermode" : 10000000,
+           "total_usage" : 36488948,
+           "usage_in_kernelmode" : 20000000
+        },
+        "system_cpu_usage" : 20091722000000000,
+        "throttling_data" : {}
+     }
+  }
+  */
+  
+
+class DockerContainerStats extends NamedEntity {
+	contains ContainerNetworkStats[] networks
+	contains ContainerMemoryUsage memory
+	contains ContainerCpuStats cpu
+	Date lastRead
+}
+
+/*
+   "networks": {
+             "eth0": {
+                 "rx_bytes": 5338,
+                 "rx_dropped": 0,
+                 "rx_errors": 0,
+                 "rx_packets": 36,
+                 "tx_bytes": 648,
+                 "tx_dropped": 0,
+                 "tx_errors": 0,
+                 "tx_packets": 8
+             },
+             "eth5": {
+                 "rx_bytes": 4641,
+                 "rx_dropped": 0,
+                 "rx_errors": 0,
+                 "rx_packets": 26,
+                 "tx_bytes": 690,
+                 "tx_dropped": 0,
+                 "tx_errors": 0,
+                 "tx_packets": 9
+             }
+     },
+ */
+
+class ContainerNetworkStats {
+	String intf
+	int rx_bytes
+	int rx_dropped
+	int rx_errors
+	int rx_packets
+	int tx_bytes
+	int tx_dropped
+	int tx_errors
+	int tx_packets
+}
+
+/*
+ * "memory_stats" : {
+        "stats" : {
+           "total_pgmajfault" : 0,
+           "cache" : 0,
+           "mapped_file" : 0,
+           "total_inactive_file" : 0,
+           "pgpgout" : 414,
+           "rss" : 6537216,
+           "total_mapped_file" : 0,
+           "writeback" : 0,
+           "unevictable" : 0,
+           "pgpgin" : 477,
+           "total_unevictable" : 0,
+           "pgmajfault" : 0,
+           "total_rss" : 6537216,
+           "total_rss_huge" : 6291456,
+           "total_writeback" : 0,
+           "total_inactive_anon" : 0,
+           "rss_huge" : 6291456,
+           "hierarchical_memory_limit" : 67108864,
+           "total_pgfault" : 964,
+           "total_active_file" : 0,
+           "active_anon" : 6537216,
+           "total_active_anon" : 6537216,
+           "total_pgpgout" : 414,
+           "total_cache" : 0,
+           "inactive_anon" : 0,
+           "active_file" : 0,
+           "pgfault" : 964,
+           "inactive_file" : 0,
+           "total_pgpgin" : 477
+        },
+        "max_usage" : 6651904,
+        "usage" : 6537216,
+        "failcnt" : 0,
+        "limit" : 67108864
+     },
+ */
+
+class ContainerMemoryStats {
+	int total_pgmajfault
+	int cache
+    int mapped_file
+    int total_inactive_file
+    int pgpgout
+    int rss
+    int total_mapped_file
+    int writeback
+    int unevictable
+    int pgpgin
+    int total_unevictable
+    int pgmajfault
+    int total_rss
+    int total_rss_huge
+    int total_writeback
+    int total_inactive_anon
+    int rss_huge
+    int hierarchical_memory_limit
+    int total_pgfault
+    int total_active_file
+    int active_anon
+    int total_active_anon
+    int total_pgpgout
+    int total_cache
+    int inactive_anon
+    int active_file
+    int pgfault
+    int inactive_file
+    int total_pgpgin
+}
+
+class ContainerMemoryUsage {
+	contains ContainerMemoryStats memstats
+	int max_usage
+	int usage
+	int failcnt
+	int limit
+}
+
+/*
+	"cpu_stats" : {
+        "cpu_usage" : {
+           "percpu_usage" : [
+              16970827,
+              1839451,
+              7107380,
+              10571290
+           ],
+           "usage_in_usermode" : 10000000,
+           "total_usage" : 36488948,
+           "usage_in_kernelmode" : 20000000
+        },
+        "system_cpu_usage" : 20091722000000000,
+        "throttling_data" : {}
+     }
+ */
+
+class ContainerCpuUsage {
+	long[] percpu_usage
+	long usage_in_usermode
+	long total_usage
+	long user_in_kernelmode
+}
+
+class ContainerCpuStats {
+	contains ContainerCpuUsage cpu_usage
+	long system_cpu_usage
+}
+

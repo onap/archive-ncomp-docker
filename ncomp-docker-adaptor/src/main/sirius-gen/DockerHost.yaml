@@ -1,0 +1,168 @@
+operations:
+  poll: {}
+  startContainer: {}
+  stopContainer: {}
+  restartContainer: {}
+  pauseContainer: {}
+  unpauseContainer: {}
+  removeContainer: {}
+  inspectContainer: {}
+  killContainer: {}
+  dockerRun: {}
+  dockerRunWithName: {}
+  dockerRunWithOptions: {}
+  containerStats: {}
+  containerProcesses: {}
+  pullImage: {}
+  REMOTE_poll:
+    decription: Remote call poll
+  REMOTE_startContainer:
+    decription: Remote call startContainer
+  REMOTE_stopContainer:
+    decription: Remote call stopContainer
+  REMOTE_restartContainer:
+    decription: Remote call restartContainer
+  REMOTE_pauseContainer:
+    decription: Remote call pauseContainer
+  REMOTE_unpauseContainer:
+    decription: Remote call unpauseContainer
+  REMOTE_removeContainer:
+    decription: Remote call removeContainer
+  REMOTE_inspectContainer:
+    decription: Remote call inspectContainer
+  REMOTE_killContainer:
+    decription: Remote call killContainer
+  REMOTE_dockerRun:
+    decription: Remote call dockerRun
+  REMOTE_dockerRunWithName:
+    decription: Remote call dockerRunWithName
+  REMOTE_dockerRunWithOptions:
+    decription: Remote call dockerRunWithOptions
+  REMOTE_containerStats:
+    decription: Remote call containerStats
+  REMOTE_containerProcesses:
+    decription: Remote call containerProcesses
+  REMOTE_pullImage:
+    decription: Remote call pullImage
+messages:
+  dummy: {}
+  poll:
+    errorCode: poll-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  startContainer:
+    errorCode: startContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  stopContainer:
+    errorCode: stopContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  restartContainer:
+    errorCode: restartContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  pauseContainer:
+    errorCode: pauseContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  unpauseContainer:
+    errorCode: unpauseContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  removeContainer:
+    errorCode: removeContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  inspectContainer:
+    errorCode: inspectContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  killContainer:
+    errorCode: killContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  dockerRun:
+    errorCode: dockerRun-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  dockerRunWithName:
+    errorCode: dockerRunWithName-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  dockerRunWithOptions:
+    errorCode: dockerRunWithOptions-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  containerStats:
+    errorCode: containerStats-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  containerProcesses:
+    errorCode: containerProcesses-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  pullImage:
+    errorCode: pullImage-FAILED-5001W
+    messageFormat: '{0}'
+    description: Operation Failed with Exception
+  REMOTE_poll:
+    errorCode: REMOTE-poll-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_startContainer:
+    errorCode: REMOTE-startContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_stopContainer:
+    errorCode: REMOTE-stopContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_restartContainer:
+    errorCode: REMOTE-restartContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_pauseContainer:
+    errorCode: REMOTE-pauseContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_unpauseContainer:
+    errorCode: REMOTE-unpauseContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_removeContainer:
+    errorCode: REMOTE-removeContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_inspectContainer:
+    errorCode: REMOTE-inspectContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_killContainer:
+    errorCode: REMOTE-killContainer-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_dockerRun:
+    errorCode: REMOTE-dockerRun-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_dockerRunWithName:
+    errorCode: REMOTE-dockerRunWithName-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_dockerRunWithOptions:
+    errorCode: REMOTE-dockerRunWithOptions-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_containerStats:
+    errorCode: REMOTE-containerStats-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_containerProcesses:
+    errorCode: REMOTE-containerProcesses-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
+  REMOTE_pullImage:
+    errorCode: REMOTE-pullImage-FAILED-5001W
+    messageFormat: '{0}'
+    description: Remote Operation Failed with Exception
