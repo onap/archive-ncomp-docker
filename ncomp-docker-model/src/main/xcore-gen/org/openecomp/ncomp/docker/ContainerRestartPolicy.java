@@ -32,11 +32,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerRestartPolicy#getNm <em>Nm</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerRestartPolicy#getMaxRetryCnt <em>Max Retry Cnt</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerRestartPolicy()
  * @model

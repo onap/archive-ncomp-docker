@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerNetworkStatsImpl#getIntf <em>Intf</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerNetworkStatsImpl#getRx_bytes <em>Rx bytes</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerNetworkStatsImpl#getTx_errors <em>Tx errors</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerNetworkStatsImpl#getTx_packets <em>Tx packets</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

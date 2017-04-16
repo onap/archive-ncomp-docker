@@ -34,6 +34,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetwork#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetwork#getScope <em>Scope</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetwork#getContainers <em>Containers</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetwork#getOptions <em>Options</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerNetwork()
  * @model

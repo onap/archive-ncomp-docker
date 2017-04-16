@@ -51,6 +51,7 @@ import java.util.Date;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerProcess#getUser <em>User</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerProcess#getPid <em>Pid</em>}</li>
@@ -64,7 +65,6 @@ import java.util.Date;
  *   <li>{@link org.openecomp.ncomp.docker.DockerProcess#getTimeElapsed <em>Time Elapsed</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerProcess#getCommand <em>Command</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerProcess()
  * @model

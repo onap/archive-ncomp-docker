@@ -33,10 +33,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerAdaptor#getDockerHosts <em>Docker Hosts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerAdaptor()
  * @model

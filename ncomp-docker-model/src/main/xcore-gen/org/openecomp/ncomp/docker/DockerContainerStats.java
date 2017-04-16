@@ -117,13 +117,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainerStats#getNetworks <em>Networks</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainerStats#getMemory <em>Memory</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainerStats#getCpu <em>Cpu</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainerStats#getLastRead <em>Last Read</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerContainerStats()
  * @model

@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryUsageImpl#getMemstats <em>Memstats</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryUsageImpl#getMax_usage <em>Max usage</em>}</li>
@@ -49,7 +50,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryUsageImpl#getFailcnt <em>Failcnt</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryUsageImpl#getLimit <em>Limit</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

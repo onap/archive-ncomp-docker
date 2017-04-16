@@ -52,13 +52,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerCpuUsage#getPercpu_usage <em>Percpu usage</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerCpuUsage#getUsage_in_usermode <em>Usage in usermode</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerCpuUsage#getTotal_usage <em>Total usage</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerCpuUsage#getUser_in_kernelmode <em>User in kernelmode</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerCpuUsage()
  * @model

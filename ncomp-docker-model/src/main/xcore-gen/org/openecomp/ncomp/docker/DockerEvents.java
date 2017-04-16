@@ -32,6 +32,7 @@ import org.openecomp.ncomp.core.NamedEntity;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerEvents#getStatus <em>Status</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerEvents#getId <em>Id</em>}</li>
@@ -41,7 +42,6 @@ import org.openecomp.ncomp.core.NamedEntity;
  *   <li>{@link org.openecomp.ncomp.docker.DockerEvents#getTime <em>Time</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerEvents#getTimenano <em>Timenano</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerEvents()
  * @model

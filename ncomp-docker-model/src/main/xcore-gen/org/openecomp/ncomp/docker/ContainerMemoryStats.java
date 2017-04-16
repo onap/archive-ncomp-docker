@@ -72,6 +72,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryStats#getTotal_pgmajfault <em>Total pgmajfault</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryStats#getCache <em>Cache</em>}</li>
@@ -103,7 +104,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryStats#getInactive_file <em>Inactive file</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryStats#getTotal_pgpgin <em>Total pgpgin</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerMemoryStats()
  * @model

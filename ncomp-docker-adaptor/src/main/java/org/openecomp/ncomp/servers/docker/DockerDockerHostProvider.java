@@ -40,7 +40,6 @@ import org.openecomp.ncomp.sirius.manager.ISiriusServer;
 import org.openecomp.ncomp.sirius.manager.ManagementServer;
 import org.openecomp.ncomp.sirius.manager.ManagementServerUtils;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,6 +61,7 @@ import org.openecomp.ncomp.docker.DockerHost;
 import org.openecomp.ncomp.docker.DockerImage;
 import org.openecomp.ncomp.docker.DockerNetwork;
 import org.openecomp.ncomp.docker.DockerPackage;
+
 
 import org.eclipse.emf.common.util.EList;
 
@@ -100,11 +100,6 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
     
     private enum ContainerEvents { 
     	CREATE, START, STOP, RESTART, PAUSE, UNPAUSE, KILL, DESTORY
-    }
-    
-    private JSONObject encodeAuth(String json) {
-    	String auth = Base64.encodeBase64String(json.getBytes());	
-    	return new JSONObject(auth);
     }
     
     public DockerDockerHostProvider(ISiriusServer controller, DockerHost o) {
@@ -405,9 +400,9 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
              // EList<DockerProcess> cp = container.getProcesses();
              // cp = (EList<DockerProcess>)Arrays.asList(dp);
              
-            System.err.println("XXXX "
-                    + ManagementServer.ecore2json(container, 100, null, true)
-                            .toString(2));
+//            System.err.println("XXXX "
+//                    + ManagementServer.ecore2json(container, 100, null, true)
+//                            .toString(2));
             o.getContainers().add(container);
         }
     }
@@ -423,7 +418,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
             fixNull(j);
             rename(j, "created", "dockerCreated");
             if (j.has("labels")) j.remove("labels");
-            System.err.println("XXXX " + j.toString());
+//            System.err.println("XXXX " + j.toString());
             DockerImage image = (DockerImage) controller.getServer()
                     .json2ecore(DockerPackage.eINSTANCE.getDockerImage(), j);
             // System.err.println("XXXX " + ManagementServer.ecore2json(image,
@@ -460,7 +455,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
     		JSONObject netwks = j.getJSONObject("networks");
     		for(String net : JSONObject.getNames(netwks)) {
     			JSONObject intf = netwks.getJSONObject(net);
-    			System.err.println(net + " <- " + intf.toString(4));
+//    			System.err.println(net + " <- " + intf.toString(4));
     			ContainerNetworkStats cnet = DockerFactory.eINSTANCE.createContainerNetworkStats();
     			cnet.setIntf(net);
     			cnet.setRx_bytes(intf.getInt("rx_bytes"));
@@ -484,7 +479,10 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
     		memusg.setUsage(mem.getInt("usage"));
     		memusg.setMax_usage(mem.getInt("max_usage"));
     		memusg.setLimit(mem.getInt("limit"));
-    		memusg.setFailcnt(mem.getInt("failcnt"));
+			try {
+				memusg.setFailcnt(mem.getInt("failcnt"));
+			} catch (Exception e) {
+			}
     		
     		/*
     		 * memory stats
@@ -551,6 +549,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
     		cstats.setCpu(ccpustats);
     		
     		c.setStats(cstats);
+    		controller.getServer().save();
     	}
     	
     }
@@ -616,7 +615,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
             // System.err.println("XXXX " + v.getClass().getName());
             if (v.getClass().getName().equals("org.json.JSONObject$Null")) {
                 j.put(k, new JSONArray());
-                System.err.println("XXXX change null to empty array " + k);
+//                System.err.println("XXXX change null to empty array " + k);
             }
         }
     }
@@ -906,7 +905,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
         //    404 - no such container
         //    500 - server err
     }
-   
+
     private List<String> getImageNameElements(String image) {
     	
     	 List<String> a = new ArrayList<>();

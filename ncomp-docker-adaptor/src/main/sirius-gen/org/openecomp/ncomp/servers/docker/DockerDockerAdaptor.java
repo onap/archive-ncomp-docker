@@ -23,17 +23,37 @@
 // Do not edit. No need to extend this class.
 package org.openecomp.ncomp.servers.docker;
 
+
+
+
+
 import java.io.InputStream;
+
 import org.openecomp.ncomp.sirius.manager.IRequestHandler;
+import org.openecomp.ncomp.sirius.manager.ISwaggerHandler;
 import org.openecomp.ncomp.sirius.manager.ISiriusPlugin;
 import org.openecomp.ncomp.sirius.manager.ISiriusServer;
+import org.openecomp.ncomp.sirius.manager.ISiriusProvider;
+import org.openecomp.ncomp.sirius.manager.ManagementServer;
+import org.openecomp.ncomp.sirius.manager.SwaggerUtils;
 import org.openecomp.ncomp.sirius.function.FunctionUtils;
 import org.openecomp.ncomp.component.ApiRequestStatus;
 
 import org.apache.log4j.Logger;
+
+import org.openecomp.ncomp.sirius.manager.logging.NcompLogger;
+import org.openecomp.logger.StatusCodeEnum;
+import org.openecomp.logger.EcompException;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.json.JSONObject;
+
 import java.util.Date;
+
+import org.openecomp.ncomp.servers.docker.logging.DockerAdaptorOperationEnum;
+import org.openecomp.ncomp.servers.docker.logging.DockerAdaptorMessageEnum;
+
 
 
 
@@ -41,9 +61,10 @@ import org.openecomp.ncomp.docker.impl.DockerAdaptorImpl;
 
 
 
-public class DockerDockerAdaptor extends DockerAdaptorImpl {
+public class DockerDockerAdaptor extends DockerAdaptorImpl implements ISiriusProvider {
 	public static final Logger logger = Logger.getLogger(DockerDockerAdaptor.class);
-	DockerDockerAdaptorProvider controller;
+	static final NcompLogger ecomplogger = NcompLogger.getNcompLogger();
+	public DockerDockerAdaptorProvider controller;
 	ISiriusServer server;
 
 	public DockerDockerAdaptor(ISiriusServer server) {
@@ -56,10 +77,12 @@ public class DockerDockerAdaptor extends DockerAdaptorImpl {
 
 
 
+
+
 	public static void ecoreSetup() {
 		DockerDockerAdaptorProvider.ecoreSetup();
 	}
-	public DockerDockerAdaptorProvider getSomfProvider() {
+	public DockerDockerAdaptorProvider getSiriusProvider() {
 		return controller;
 	}
 }

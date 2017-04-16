@@ -52,6 +52,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkImpl#getScope <em>Scope</em>}</li>
@@ -60,7 +61,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkImpl#getContainers <em>Containers</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkImpl#getOptions <em>Options</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

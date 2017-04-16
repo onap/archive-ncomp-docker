@@ -28,10 +28,18 @@ import org.openecomp.ncomp.sirius.manager.HighAvailabilityClient;
 import org.openecomp.ncomp.sirius.manager.GenericHttpClient;
 
 import org.apache.log4j.Logger;
+
+import org.openecomp.logger.EcompLogger;
+import org.openecomp.logger.StatusCodeEnum;
+import org.openecomp.logger.EcompException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import org.openecomp.ncomp.docker.impl.DockerHostImpl;
 import org.openecomp.ncomp.docker.DockerPackage;
+import org.openecomp.ncomp.servers.docker.logging.DockerHostOperationEnum;
+import org.openecomp.ncomp.servers.docker.logging.DockerHostMessageEnum;
 
 
 import org.openecomp.ncomp.servers.docker.DockerDockerAdaptor; 
@@ -42,109 +50,281 @@ import org.openecomp.ncomp.servers.docker.DockerDockerAdaptor;
 @SuppressWarnings("unchecked")
 public class DockerDockerHostClient extends DockerHostImpl {
 	public static final Logger logger = Logger.getLogger(DockerDockerHostClient.class);
+	static final EcompLogger ecomplogger = EcompLogger.getEcompLogger();
 	public AbstractClient client;
 
 	public DockerDockerHostClient(String file, String name) {
 		DockerDockerAdaptor.ecoreSetup(); 
 		client = new GenericHttpClient(file,name);
 		client.add("/host", this);
+		client.setVersion("ONAP-R2");
 	}
 
 	public DockerDockerHostClient(String file, String name1, String name2) {
 		HighAvailabilityClient client1 = new HighAvailabilityClient(file,name1,name2);
 		client = client1.all; // requests should be forwarded to all.
 		client.add("/host", this);
+		client.setVersion("ONAP-R2");
 	}
 	
 	public DockerDockerHostClient(AbstractClient c) {
 		client = c;
 		client.add("/resources", this);
+		client.setVersion("ONAP-R2");
 	}
 
 
 
 	
 	public void poll(String path) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "poll", null);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_poll,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "poll", null);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_poll, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_poll,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_poll,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void startContainer(String path, java.lang.String name) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "startContainer", null, name);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_startContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "startContainer", null, name);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_startContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_startContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_startContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void stopContainer(String path, java.lang.String name, int seconds) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "stopContainer", null, name,seconds);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_stopContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "stopContainer", null, name,seconds);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_stopContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_stopContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_stopContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void restartContainer(String path, java.lang.String name, int seconds) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "restartContainer", null, name,seconds);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_restartContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "restartContainer", null, name,seconds);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_restartContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_restartContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_restartContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void pauseContainer(String path, java.lang.String name) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "pauseContainer", null, name);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_pauseContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "pauseContainer", null, name);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_pauseContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_pauseContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_pauseContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void unpauseContainer(String path, java.lang.String name) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "unpauseContainer", null, name);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_unpauseContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "unpauseContainer", null, name);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_unpauseContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_unpauseContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_unpauseContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void removeContainer(String path, java.lang.String name, boolean remove, boolean force) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "removeContainer", null, name,remove,force);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_removeContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "removeContainer", null, name,remove,force);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_removeContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_removeContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_removeContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void inspectContainer(String path, java.lang.String name) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "inspectContainer", null, name);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_inspectContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "inspectContainer", null, name);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_inspectContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_inspectContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_inspectContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void killContainer(String path, java.lang.String name, java.lang.String sigint) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "killContainer", null, name,sigint);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_killContainer,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "killContainer", null, name,sigint);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_killContainer, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_killContainer,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_killContainer,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void dockerRun(String path, java.lang.String image) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "dockerRun", null, image);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_dockerRun,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "dockerRun", null, image);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRun, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRun,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRun,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void dockerRunWithName(String path, java.lang.String image, java.lang.String name) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "dockerRunWithName", null, image,name);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_dockerRunWithName,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "dockerRunWithName", null, image,name);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRunWithName, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRunWithName,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRunWithName,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void dockerRunWithOptions(String path, java.lang.String image, org.openecomp.ncomp.docker.ContainerOptions opts) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "dockerRunWithOptions", null, image,opts);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_dockerRunWithOptions,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "dockerRunWithOptions", null, image,opts);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRunWithOptions, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRunWithOptions,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_dockerRunWithOptions,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void containerStats(String path, java.lang.String name, boolean stream) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "containerStats", null, name,stream);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_containerStats,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "containerStats", null, name,stream);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_containerStats, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_containerStats,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_containerStats,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 	
 	public void containerProcesses(String path, java.lang.String name) {
-		EClass c = DockerPackage.eINSTANCE.getDockerHost(); //foo
-		client.operationPath(path, c, "containerProcesses", null, name);
+		EClass c = DockerPackage.eINSTANCE.getDockerHost(); 
+		ecomplogger.recordMetricEventStart(DockerHostOperationEnum.DockerHost_containerProcesses,client.getRemote());
+		
+		try {
+		  client.operationPath(path, c, "containerProcesses", null, name);
+		}
+		catch (Exception e) {
+			ecomplogger.warn(DockerHostMessageEnum.REMOTE_CALL_FAILED_containerProcesses, e.toString());
+			EcompException e1 = EcompException.create(DockerHostMessageEnum.REMOTE_CALL_FAILED_containerProcesses,e,e.getMessage());
+			ecomplogger.recordMetricEventEnd(StatusCodeEnum.ERROR,DockerHostMessageEnum.REMOTE_CALL_FAILED_containerProcesses,e.getMessage());
+			throw e1;
+		}
+		ecomplogger.recordMetricEventEnd();
+		
 	}
 
 }

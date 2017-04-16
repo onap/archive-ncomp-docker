@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerProcessImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerProcessImpl#getPid <em>Pid</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerProcessImpl#getTimeElapsed <em>Time Elapsed</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerProcessImpl#getCommand <em>Command</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

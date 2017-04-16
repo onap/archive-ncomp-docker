@@ -5,10 +5,3 @@ Bundle-SymbolicName: ncomp-docker-adaptor
 Bundle-Version: 0.1.0.qualifier
 Export-Package: org.openecomp.ncomp.docker.adaptor.tools,
   org.openecomp.ncomp.servers.docker
-Require-Bundle: ncomp-core-types,
- ncomp-sirius-manager-model,
- ncomp-sirius-manager-server,
- ncomp-sirius-manager-console,
- ncomp-sirius-manager-generator,
- ncomp-docker-model;bundle-version="0.1.0",
- ncomp-utils-java;bundle-version="0.1.0"

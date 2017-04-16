@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerImage#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerImage#getParentId <em>Parent Id</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.openecomp.ncomp.docker.DockerImage#getVirtualSize <em>Virtual Size</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerImage#getLabels <em>Labels</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerImage()
  * @model

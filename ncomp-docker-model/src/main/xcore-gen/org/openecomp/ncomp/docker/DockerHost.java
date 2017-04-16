@@ -34,6 +34,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerHost#getUrl <em>Url</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerHost#getPollingFrequency <em>Polling Frequency</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.openecomp.ncomp.docker.DockerHost#getContainers <em>Containers</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerHost#getNetworks <em>Networks</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerHost()
  * @model

@@ -49,11 +49,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerIpamImpl#getDriver <em>Driver</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerIpamImpl#getConfig <em>Config</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

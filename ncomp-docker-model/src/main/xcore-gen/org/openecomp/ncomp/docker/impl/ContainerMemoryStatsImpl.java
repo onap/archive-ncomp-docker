@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryStatsImpl#getTotal_pgmajfault <em>Total pgmajfault</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryStatsImpl#getCache <em>Cache</em>}</li>
@@ -70,7 +71,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryStatsImpl#getInactive_file <em>Inactive file</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerMemoryStatsImpl#getTotal_pgpgin <em>Total pgpgin</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -39,11 +39,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerRestartPolicyImpl#getNm <em>Nm</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerRestartPolicyImpl#getMaxRetryCnt <em>Max Retry Cnt</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

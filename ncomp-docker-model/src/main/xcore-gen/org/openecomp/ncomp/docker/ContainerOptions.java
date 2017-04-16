@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerOptions#getImageNm <em>Image Nm</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerOptions#getEnv <em>Env</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.openecomp.ncomp.docker.ContainerOptions#getPortBindings <em>Port Bindings</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerOptions#getAutoRestart <em>Auto Restart</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerOptions()
  * @model

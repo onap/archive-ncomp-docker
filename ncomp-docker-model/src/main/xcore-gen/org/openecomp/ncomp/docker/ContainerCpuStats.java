@@ -32,11 +32,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerCpuStats#getCpu_usage <em>Cpu usage</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerCpuStats#getSystem_cpu_usage <em>System cpu usage</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerCpuStats()
  * @model

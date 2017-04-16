@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryUsage#getMemstats <em>Memstats</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryUsage#getMax_usage <em>Max usage</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryUsage#getFailcnt <em>Failcnt</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerMemoryUsage#getLimit <em>Limit</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerMemoryUsage()
  * @model

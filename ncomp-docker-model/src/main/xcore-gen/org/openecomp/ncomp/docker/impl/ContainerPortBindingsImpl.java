@@ -40,12 +40,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerPortBindingsImpl#getContainerPort <em>Container Port</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerPortBindingsImpl#getProtocol <em>Protocol</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerPortBindingsImpl#getVmPort <em>Vm Port</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

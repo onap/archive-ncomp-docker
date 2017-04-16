@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerPort#getPrivatePort <em>Private Port</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerPort#getPublicPort <em>Public Port</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerPort#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerPort()
  * @model
