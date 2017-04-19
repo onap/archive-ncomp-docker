@@ -1,25 +1,4 @@
 
-/*-
- * ============LICENSE_START==========================================
- * OPENECOMP - DCAE
- * ===================================================================
- * Copyright (c) 2017 AT&T Intellectual Property. All rights reserved.
- * ===================================================================
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0 
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ============LICENSE_END============================================
- */
-	
-
 package org.openecomp.ncomp.servers.docker.logging;
 
 import com.att.eelf.i18n.EELFResourceManager;
@@ -28,38 +7,36 @@ import org.openecomp.logger.EcompMessageEnum;
 public enum DockerHostMessageEnum implements EcompMessageEnum {
 
   dummy,
-  poll,
-  startContainer,
-  stopContainer,
-  restartContainer,
-  pauseContainer,
-  unpauseContainer,
-  removeContainer,
-  inspectContainer,
-  killContainer,
-  dockerRun,
-  dockerRunWithName,
-  dockerRunWithOptions,
-  containerStats,
-  containerProcesses,
-  pullImage,
-  REMOTE_poll,
-  REMOTE_startContainer,
-  REMOTE_stopContainer,
-  REMOTE_restartContainer,
-  REMOTE_pauseContainer,
-  REMOTE_unpauseContainer,
-  REMOTE_removeContainer,
-  REMOTE_inspectContainer,
-  REMOTE_killContainer,
-  REMOTE_dockerRun,
-  REMOTE_dockerRunWithName,
-  REMOTE_dockerRunWithOptions,
-  REMOTE_containerStats,
-  REMOTE_containerProcesses,
-  REMOTE_pullImage;
+  REQUEST_FAILED_poll,
+  REQUEST_FAILED_startContainer,
+  REQUEST_FAILED_stopContainer,
+  REQUEST_FAILED_restartContainer,
+  REQUEST_FAILED_pauseContainer,
+  REQUEST_FAILED_unpauseContainer,
+  REQUEST_FAILED_removeContainer,
+  REQUEST_FAILED_inspectContainer,
+  REQUEST_FAILED_killContainer,
+  REQUEST_FAILED_dockerRun,
+  REQUEST_FAILED_dockerRunWithName,
+  REQUEST_FAILED_dockerRunWithOptions,
+  REQUEST_FAILED_containerStats,
+  REQUEST_FAILED_containerProcesses,
+  REMOTE_CALL_FAILED_poll,
+  REMOTE_CALL_FAILED_startContainer,
+  REMOTE_CALL_FAILED_stopContainer,
+  REMOTE_CALL_FAILED_restartContainer,
+  REMOTE_CALL_FAILED_pauseContainer,
+  REMOTE_CALL_FAILED_unpauseContainer,
+  REMOTE_CALL_FAILED_removeContainer,
+  REMOTE_CALL_FAILED_inspectContainer,
+  REMOTE_CALL_FAILED_killContainer,
+  REMOTE_CALL_FAILED_dockerRun,
+  REMOTE_CALL_FAILED_dockerRunWithName,
+  REMOTE_CALL_FAILED_dockerRunWithOptions,
+  REMOTE_CALL_FAILED_containerStats,
+  REMOTE_CALL_FAILED_containerProcesses;
 
 	static {
-		EELFResourceManager.loadMessageBundle("org.openecomp.ncomp.servers.docker.logging.DockerHost");
+		EELFResourceManager.loadMessageBundle("org/openecomp/ncomp/servers/docker/logging/DockerHost");
 	}
 }

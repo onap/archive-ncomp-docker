@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerImpl#getNames <em>Names</em>}</li>
@@ -72,7 +73,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerImpl#getStats <em>Stats</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerImpl#getEvents <em>Events</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

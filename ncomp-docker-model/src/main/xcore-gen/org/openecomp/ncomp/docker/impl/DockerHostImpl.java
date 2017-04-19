@@ -55,6 +55,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerHostImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerHostImpl#getPollingFrequency <em>Polling Frequency</em>}</li>
@@ -63,7 +64,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerHostImpl#getContainers <em>Containers</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerHostImpl#getNetworks <em>Networks</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

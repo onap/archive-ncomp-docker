@@ -24,11 +24,6 @@ package org.openecomp.ncomp.servers.docker;
 import org.openecomp.ncomp.sirius.manager.ISiriusServer;
 import org.openecomp.ncomp.sirius.manager.ManagementServer;
 
-/*
- * the polled docker-engine is defined in docker.properties 
- * dockerHost.endpoint=https://host.domaon:port
- *
- */
 public class TestPolling implements ISiriusServer {
 
 	public static void main(String[] args) {

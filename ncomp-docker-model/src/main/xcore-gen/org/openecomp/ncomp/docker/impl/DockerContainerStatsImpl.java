@@ -53,13 +53,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerStatsImpl#getNetworks <em>Networks</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerStatsImpl#getMemory <em>Memory</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerStatsImpl#getCpu <em>Cpu</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerContainerStatsImpl#getLastRead <em>Last Read</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

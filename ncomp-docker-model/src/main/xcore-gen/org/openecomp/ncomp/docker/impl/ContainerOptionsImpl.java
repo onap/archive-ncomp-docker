@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerOptionsImpl#getImageNm <em>Image Nm</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerOptionsImpl#getEnv <em>Env</em>}</li>
@@ -55,7 +56,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerOptionsImpl#getPortBindings <em>Port Bindings</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerOptionsImpl#getAutoRestart <em>Auto Restart</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

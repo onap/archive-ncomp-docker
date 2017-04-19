@@ -45,13 +45,13 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerCpuUsageImpl#getPercpu_usage <em>Percpu usage</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerCpuUsageImpl#getUsage_in_usermode <em>Usage in usermode</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerCpuUsageImpl#getTotal_usage <em>Total usage</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerCpuUsageImpl#getUser_in_kernelmode <em>User in kernelmode</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

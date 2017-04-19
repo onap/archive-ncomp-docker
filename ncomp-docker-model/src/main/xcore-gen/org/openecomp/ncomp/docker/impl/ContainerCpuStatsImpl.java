@@ -42,11 +42,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerCpuStatsImpl#getCpu_usage <em>Cpu usage</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.ContainerCpuStatsImpl#getSystem_cpu_usage <em>System cpu usage</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -34,6 +34,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainer#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainer#getNames <em>Names</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainer#getStats <em>Stats</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerContainer#getEvents <em>Events</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerContainer()
  * @model

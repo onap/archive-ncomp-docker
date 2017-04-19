@@ -45,11 +45,11 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerCreateRequestImpl#getHostname <em>Hostname</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerCreateRequestImpl#getCmd <em>Cmd</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

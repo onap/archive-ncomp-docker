@@ -74,8 +74,8 @@ public abstract class DockerAbstractClient {
 		EOperation op = EUtils.name2operation(o.eClass(), opName);
 		if (op == null)
 			throw new RuntimeException("no such operation: " + opName + " on " + o);
-		JSONObject res = operationPath2(path, opName, timeout, ManagementServer.params2json(op, params));
-		return ManagementServer.json2response(op, res);
+		JSONObject res = operationPath2(path, opName, timeout, ManagementServer.params2json(op, params, "UNKNOWN"));
+		return ManagementServer.json2response(op, res, "UNKNOWN");
 	}
 
 	public JSONObject operation(String resourcePath, String opName, Long timeout, JSONObject json) {
@@ -96,14 +96,14 @@ public abstract class DockerAbstractClient {
 			throw new RuntimeException("Unknown operation " + opName + " on Eclass " + c.getName());
 		}
 		JSONObject res;
-		JSONObject json1 = ManagementServer.params2json(op, params);
+		JSONObject json1 = ManagementServer.params2json(op, params, "UNKNOWN");
 		if (language != null && language.equals("restconf")) { 
 		    res = operationOdl("/restconf/operations/" + namespace + ":" + opName,timeout,json1);
 		}
 		else {
 			res = operationPath2(resourcePath, op.getName(), timeout, json1 );
 		}
-		return ManagementServer.json2response(op, res);
+		return ManagementServer.json2response(op, res, "UNKNOWN");
 	}
 
 	// abstract public void sendToDataRouter(String feedname, String fileId,

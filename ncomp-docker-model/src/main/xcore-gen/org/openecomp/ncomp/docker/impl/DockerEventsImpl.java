@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerEventsImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerEventsImpl#getId <em>Id</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerEventsImpl#getTime <em>Time</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerEventsImpl#getTimenano <em>Timenano</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

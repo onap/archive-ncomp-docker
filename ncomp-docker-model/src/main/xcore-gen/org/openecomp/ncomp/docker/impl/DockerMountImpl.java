@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerMountImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerMountImpl#getDestination <em>Destination</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerMountImpl#getRW <em>RW</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerMountImpl#getPropagation <em>Propagation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

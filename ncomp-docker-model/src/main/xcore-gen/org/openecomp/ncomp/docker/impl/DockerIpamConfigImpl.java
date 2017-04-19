@@ -39,10 +39,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerIpamConfigImpl#getSubnet <em>Subnet</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

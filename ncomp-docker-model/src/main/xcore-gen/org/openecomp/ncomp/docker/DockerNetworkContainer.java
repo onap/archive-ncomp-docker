@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetworkContainer#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetworkContainer#getIPv4Address <em>IPv4 Address</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetworkContainer#getEndpointID <em>Endpoint ID</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerNetworkContainer#getMacAddress <em>Mac Address</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerNetworkContainer()
  * @model

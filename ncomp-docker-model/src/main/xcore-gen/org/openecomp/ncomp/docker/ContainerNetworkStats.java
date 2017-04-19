@@ -57,6 +57,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerNetworkStats#getIntf <em>Intf</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerNetworkStats#getRx_bytes <em>Rx bytes</em>}</li>
@@ -68,7 +69,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.openecomp.ncomp.docker.ContainerNetworkStats#getTx_errors <em>Tx errors</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.ContainerNetworkStats#getTx_packets <em>Tx packets</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getContainerNetworkStats()
  * @model

@@ -34,11 +34,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.DockerIpam#getDriver <em>Driver</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.DockerIpam#getConfig <em>Config</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.openecomp.ncomp.docker.DockerPackage#getDockerIpam()
  * @model

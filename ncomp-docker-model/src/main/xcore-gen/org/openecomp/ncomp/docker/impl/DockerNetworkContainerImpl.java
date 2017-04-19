@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkContainerImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkContainerImpl#getIPv4Address <em>IPv4 Address</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkContainerImpl#getEndpointID <em>Endpoint ID</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerNetworkContainerImpl#getMacAddress <em>Mac Address</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

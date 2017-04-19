@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerImageImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerImageImpl#getParentId <em>Parent Id</em>}</li>
@@ -57,7 +58,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerImageImpl#getVirtualSize <em>Virtual Size</em>}</li>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerImageImpl#getLabels <em>Labels</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -43,10 +43,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.openecomp.ncomp.docker.impl.DockerAdaptorImpl#getDockerHosts <em>Docker Hosts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
