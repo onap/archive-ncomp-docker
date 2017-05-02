@@ -72,6 +72,8 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
     DockerHost o;
     DockerHttpClient client;
     protected Date lastPoll;
+
+	private Long timeout;
     
     //
     // Docker endpoint types are --
@@ -106,6 +108,8 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
         super(controller, o);
         this.o = o;
         this.client = new DockerHttpClient("docker.properties","dockerHost");
+        if (client != null && client.props != null)
+        	timeout = Long.parseLong(client.props.getProperty("dockerHost.timeout", "60000"));
     }
 
     @Override
@@ -229,7 +233,6 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
 
          if (client.getResponseCode() == 201) {
         	 String shortId = json.getString("Id").substring(0,11);
-        	 logger.info("Starting container <- " + shortId);
              startContainer(shortId);
          }
          
@@ -363,11 +366,10 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
          // 406 - impossible to attach (container not running)
          // 500 - server error
 
-          if (client.getResponseCode() == 201) {
-         	 String shortId = json.getString("Id").substring(0,11);
-         	 logger.info("Starting container <- " + shortId);
-              startContainer(shortId);
-          }
+		if (client.getResponseCode() == 201) {
+			String shortId = json.getString("Id").substring(0, 11);
+			startContainer(shortId);
+		}
           
 		
 	}
@@ -418,13 +420,13 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
             fixNull(j);
             rename(j, "created", "dockerCreated");
             if (j.has("labels")) j.remove("labels");
-//            System.err.println("XXXX " + j.toString());
+//            System.err.println("XXXX " + j.toString(2));
             DockerImage image = (DockerImage) controller.getServer()
                     .json2ecore(DockerPackage.eINSTANCE.getDockerImage(), j);
-            // System.err.println("XXXX " + ManagementServer.ecore2json(image,
-            // 100, null, true).toString(2));
             if (image.getRepoTags().size() > 0)
                 image.setName(image.getRepoTags().get(0));
+            else
+            	image.setName(image.getRepoDigests().get(0));
             image.setName(image.getName().replace("/", "_"));
             o.getImages().add(image);
         }
@@ -723,21 +725,19 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
     	 // this will be prepended to the api string passed into the method
          String url = client.getBaseAddress();
          
-         logger.info("api <- " + method + " " + url + api);
-         
          switch(method) {
          case GET_METHOD : 
-        	 json = client.httpJsonTransaction(api, method, headers, null, 5000L);
+        	 json = client.httpJsonTransaction(api, method, headers, null, timeout);
         	 break;
          case POST_METHOD :
         	 if (context == null) {
-        		 client.httpBinaryTransaction(api, method, headers, context, 5000L);
+        		 client.httpBinaryTransaction(api, method, headers, context, timeout);
         	 } else {
-        		 json = client.httpJsonTransaction(api,method, headers, context, 5000L);
+        		 json = client.httpJsonTransaction(api,method, headers, context, timeout);
         	 }
         	 break;
          case DELETE_METHOD :
-        	 json = client.httpJsonTransaction(api, method, headers, null, 5000L);
+        	 json = client.httpJsonTransaction(api, method, headers, null, timeout);
         	 break;
          }
          
@@ -762,7 +762,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
          
          logger.info("api <- " + method + " " + url + api);
         
-         bytes = client.httpBinaryTransaction(api, method, headers, context, 5000L);
+         bytes = client.httpBinaryTransaction(api, method, headers, context, timeout);
          logger.info("http response <- " + client.getResponseCode());
          
          JSONObject json = new JSONObject(bytes.toString());
@@ -863,6 +863,7 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
   
         String url = CONTAINERS + name + "/unpause";
         JSONObject json = callRemoteApi(url,POST_METHOD);
+        logger.debug("unpauseContainer: " + (json != null ? json.toString(2) : "NULL"));
         
         // status codes: 
         //    204 - no error

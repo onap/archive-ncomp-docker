@@ -21,14 +21,16 @@
 	
 package org.openecomp.ncomp.servers.docker;
 
-import java.io.*;
-import java.util.*;
-import java.net.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
-import org.apache.commons.codec.binary.Base64;
-
 import org.openecomp.ncomp.utils.CryptoUtils;
 import org.openecomp.ncomp.utils.PropertyUtil;
 
@@ -84,20 +86,12 @@ public class DockerHttpClient extends DockerAbstractClient {
 		}
 	}
 	
-	private String decryptPassword(String s) {
-		if (s.startsWith("rsa:")) {
-			s = CryptoUtils.decryptPrivate(CryptoUtils.getKey("config/server.private"), s.substring(4));
-		}
-		return s;
-	}
-
-
 	public byte[] httpBinaryTransaction(String path, String method, HashMap<String, String> headers, JSONObject body,
 			Long timeout) {
-		
+
 		byte[] rawbody = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		
+
 		if ("DELETE".equals(method) || "GET".equals(method)) {
 			body = null;
 		}
@@ -113,6 +107,8 @@ public class DockerHttpClient extends DockerAbstractClient {
 			// units? seconds or millis?
 			tout = (int) timeout.longValue();
 		}
+		InputStream is = null;
+		OutputStream os = null;
 		try {
 			URL u = new URL(url);
 			HttpURLConnection uc = (HttpURLConnection) u.openConnection();
@@ -120,11 +116,11 @@ public class DockerHttpClient extends DockerAbstractClient {
 			uc.setReadTimeout(tout);
 			if (headers == null)
 				headers = new HashMap<String, String>();
-			
+
 			if (body != null) {
-			    headers.put("Content-type", "application/json");
+				headers.put("Content-type", "application/json");
 			}
-			//headers.put("Authorization", authorization);
+			// headers.put("Authorization", authorization);
 			for (String n : headers.keySet()) {
 				uc.setRequestProperty(n, headers.get(n));
 				if (debug) {
@@ -132,42 +128,42 @@ public class DockerHttpClient extends DockerAbstractClient {
 				}
 			}
 			uc.setRequestMethod(method);
-			if (debug) 
+			if (debug)
 				System.err.println("HTTP REQUEST method: " + method + " " + uc.getRequestMethod());
-			
+
 			if (rawbody != null && rawbody.length > 0) {
 				uc.setRequestProperty("Content-Length", Integer.toString(rawbody.length));
 				uc.setFixedLengthStreamingMode(rawbody.length);
 				uc.setDoOutput(true);
-				OutputStream os = uc.getOutputStream();
+				os = uc.getOutputStream();
 				os.write(rawbody);
-				safeClose(os);
 			}
 			int rc = uc.getResponseCode();
 			this.responseCode = rc;
 			if (rc < 200 || rc >= 300) {
 				// do not throw an error - log the failure
-				//throw new DockerHttpClientException("HTTP Request Failed: URL: " + url + " code:" + rc + " msg:"
-				//+ uc.getResponseMessage());
-				logger.error("HTTP Request Failed. URL: " + url + " code: " + rc + " msg: " + uc.getResponseMessage());
-				throw new RuntimeException("Docker HTTP Request Failed. URL: " + url + " code: " + rc + " msg: " + uc.getResponseMessage());
+				// throw new DockerHttpClientException("HTTP Request Failed:
+				// URL: " + url + " code:" + rc + " msg:"
+				// + uc.getResponseMessage());
+				throw new RuntimeException("Docker HTTP Request Failed. URL: " + url + " code: " + rc + " msg: "
+						+ uc.getResponseMessage());
 			}
-			
-			//ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+			// ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			int i;
-			InputStream is = uc.getInputStream();
+			is = uc.getInputStream();
 			byte[] buf = new byte[65536];
 			while ((i = is.read(buf)) > 0) {
 				baos.write(buf, 0, i);
 			}
-			safeClose(is);
-			//return baos.toByteArray();
-			
 		} catch (RuntimeException re) {
 			throw re;
 		} catch (Exception e) {
 			logger.error("Exception <- " + e + " " + e.getMessage());
 			throw new RuntimeException("http error: " + e, e);
+		} finally {
+			safeClose(os);
+			safeClose(is);
 		}
 		return baos.toByteArray();
 	}

@@ -176,7 +176,6 @@ public abstract class DockerAbstractClient {
 			json.put("$list", a);
 			return json;
 		} else {
-			logger.info("json returned <- " + "'" + s + "'");
 			JSONObject json = (!s.isEmpty()) ? new JSONObject(s) : new JSONObject();
 			return json;
 		}
