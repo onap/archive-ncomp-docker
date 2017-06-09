@@ -39,7 +39,7 @@ import java.io.UnsupportedEncodingException;
 import org.openecomp.ncomp.sirius.manager.ISiriusServer;
 import org.openecomp.ncomp.sirius.manager.ManagementServer;
 import org.openecomp.ncomp.sirius.manager.ManagementServerUtils;
-
+import org.openecomp.ncomp.utils.SecurityUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -351,8 +351,8 @@ class DockerDockerHostProvider extends BasicAdaptorProvider {
           
           if (opts.isSetContainerName()) {
         	  try { 
-        		  jobj.put("Hostname", InetAddress.getLocalHost().getHostName());
-        	  } catch(UnknownHostException e) {
+        		  jobj.put("Hostname", SecurityUtils.getHostName());
+        	  } catch(Exception e) {
         		  logger.error("Unable to determine local hostname", e);
         	  }
           }
